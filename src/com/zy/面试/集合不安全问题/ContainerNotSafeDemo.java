@@ -19,9 +19,9 @@ public class ContainerNotSafeDemo {
     }
 
     private static void setNotSafe() {
-        Set<String> set = new HashSet<>();
+//        Set<String> set = new HashSet<>();
 //        Set<String> set = Collections.synchronizedSet(new HashSet<>());
-//        Set<String> set = new CopyOnWriteArraySet<>();
+        Set<String> set = new CopyOnWriteArraySet<>();
         for (int i = 1; i <= 30; i++) {
             new Thread(() -> {
                 set.add(UUID.randomUUID().toString().substring(0, 8));
