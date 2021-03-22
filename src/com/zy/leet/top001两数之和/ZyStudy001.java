@@ -8,27 +8,25 @@ import java.util.Set;
 public class ZyStudy001 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] nums = new int[3];
-        System.out.print("输入数组元素(空格分割):");
-        while (sc.hasNext()) {
-            for (int i = 0; i < nums.length; i++) {
-                nums[i] = sc.nextInt();
-            }
-            System.out.print("输入目标值:");
-            int target = sc.nextInt();
-            test(nums, target);
+        System.out.println("数组长度");
+        int len = sc.nextInt();
+        System.out.println("数组元素");
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr[i] = sc.nextInt();
         }
-    }
-
-    private static void test(int[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(nums[i])) {
-                System.out.println("[" + map.get(nums[i]) + "," + i + "]");
-                return;
+        System.out.println("目标值");
+        int target = sc.nextInt();
+        Map<Integer,Integer> map = new HashMap<>();
+        int j = 0;
+        for (; j < len; j++) {
+            int key = target - arr[j];
+            if (map.containsKey(arr[j])) {
+                System.out.println((map.get(arr[j])+1) + "\t" + (j+1));
+                break;
             }
-            map.put(target - nums[i], i);
+            map.put(key, j);
         }
-        System.out.println("none");
+        System.out.println((j+1) == target ? "none" : "end");
     }
 }
