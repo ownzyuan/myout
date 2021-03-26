@@ -7,12 +7,12 @@ import java.net.Socket;
 public class Psvm {
     public static void main(String[] args) {
         try {
-            new Socket("localhost",9000);
+            new Socket("localhost", 9000);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            new ServerSocket(9000,80);
+            new ServerSocket(9000, 80);
         } catch (IOException e) {
             e.printStackTrace();
         }
