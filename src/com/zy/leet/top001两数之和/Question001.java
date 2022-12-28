@@ -1,5 +1,8 @@
 package com.zy.leet.top001两数之和;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Question001 {
     /**
      * 题目描述：
@@ -12,5 +15,27 @@ public class Question001 {
      * 因为 nums[0] + nums[1] = 2 + 7 = 9
      * 所以返回 [0, 1]
      */
+
+    public static void main(String[] args) {
+        int[] nums = {1,3,4,5,8};
+        int target = 9;
+        int[] result = test(nums, target);
+    }
+
+    private static int[] test(int[] nums, int target) {
+        int[] result = new int[2];
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (map.containsKey(num)) {
+                Integer one = map.get(num);
+                result[0] = one;
+                result[1] = i;
+            } else {
+                map.put(target - num, i);
+            }
+        }
+        return result;
+    }
 
 }
