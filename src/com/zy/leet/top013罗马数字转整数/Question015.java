@@ -56,4 +56,58 @@ public class Question015 {
      * IL 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。
      * 关于罗马数字的详尽书写规则，可以参考 罗马数字 - Mathematics 。
      */
+
+
+    public static void main(String[] args) {
+        String s = "MCMXCIV";
+        romanToInt(s);
+
+    }
+
+    public static int romanToInt(String s) {
+        int result = 0;
+        if (s == null) {
+            return 0;
+        }
+        String[] split = s.split("");
+        for (int i = 0; i < split.length; i++) {
+            String s1 = split[i];
+            int currentNum = compareStr(s1);
+            if (i == 0) {
+                result+=currentNum;
+                continue;
+            }
+            int previousNum = compareStr(split[i - 1]);
+            if (previousNum < currentNum) {
+                currentNum = currentNum - previousNum - previousNum;
+            }
+            result+=currentNum;
+        }
+        return result;
+    }
+
+    private static int compareStr(String str) {
+        if ("I".equals(str)) {
+            return 1;
+        }
+        if ("V".equals(str)) {
+            return 5;
+        }
+        if ("X".equals(str)) {
+            return 10;
+        }
+        if ("L".equals(str)) {
+            return 50;
+        }
+        if ("C".equals(str)) {
+            return 100;
+        }
+        if ("D".equals(str)) {
+            return 500;
+        }
+        if ("M".equals(str)) {
+            return 1000;
+        }
+        return 0;
+    }
 }
