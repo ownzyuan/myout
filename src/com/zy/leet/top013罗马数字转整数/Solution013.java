@@ -3,7 +3,7 @@ package com.zy.leet.top013罗马数字转整数;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution015 {
+public class Solution013 {
 
     public static void main(String[] args) {
         String s = "MCMXCIV";

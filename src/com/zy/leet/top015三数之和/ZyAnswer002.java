@@ -1,11 +1,8 @@
 package com.zy.leet.top015三数之和;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class ZyAnswer001 {
-
+public class ZyAnswer002 {
     public static void main(String[] args) {
 //        int[] nums = {-1, 0, 1, 2, -1, -4};
 //        int[] nums = {0, 0, 0, 0};
@@ -131,29 +128,30 @@ public class ZyAnswer001 {
             if (num > 0) {
                 break;
             }
+            int target = -num;
+            int end = nums.length - 1;
             for (int k = start; k < nums.length; k++) {
                 if (k != start && nums[k] == nums[k - 1]) {
                     continue;
                 }
-                // todo 这里性能有问题，因为每次k循环，都会从最后一位开始判断，效率极低
-                int end = nums.length - 1;
-                while (k < end) {
-                    if (end != nums.length - 1 && nums[end] == nums[end + 1]) {
-                        end--;
-                        continue;
-                    }
-                    if (num + nums[k] + nums[end] == 0) {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(num);
-                        list.add(nums[k]);
-                        list.add(nums[end]);
-                        result.add(list);
-                    }
+                // 这一步操作是性能的关键！！！
+                // 缩小end指针的范围，因为当跳出循环时，要么k=end直接结束，
+                // 要么end已经处在可能满足条件的位置了，即在k-end区间就可能存在满足条件的值，区间外的一定不满足
+                while (k < end && nums[k] + nums[end] > target) {
                     end--;
+                }
+                if (k == end) {
+                    break;
+                }
+                if (nums[k] + nums[end] == target) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(num);
+                    list.add(nums[k]);
+                    list.add(nums[end]);
+                    result.add(list);
                 }
             }
         }
         return result;
     }
-
 }

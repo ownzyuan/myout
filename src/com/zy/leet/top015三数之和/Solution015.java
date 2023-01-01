@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ZyAnswer001 {
+public class Solution015 {
 
     public static void main(String[] args) {
 //        int[] nums = {-1, 0, 1, 2, -1, -4};
@@ -114,46 +114,43 @@ public class ZyAnswer001 {
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
+        int n = nums.length;
         Arrays.sort(nums);
-        List<List<Integer>> result = new ArrayList<>();
-        if (nums.length < 3) {
-            return result;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        // 枚举 a
+        for (int first = 0; first < n; ++first) {
+            // 需要和上一次枚举的数不相同
+            if (first > 0 && nums[first] == nums[first - 1]) {
                 continue;
             }
-            int start = i + 1;
-            if (start == nums.length - 1) {
-                break;
-            }
-            int num = nums[i];
-            if (num > 0) {
-                break;
-            }
-            for (int k = start; k < nums.length; k++) {
-                if (k != start && nums[k] == nums[k - 1]) {
+            // c 对应的指针初始指向数组的最右端
+            int end = n - 1;
+            int target = -nums[first];
+            // 枚举 b
+            for (int start = first + 1; start < n; ++start) {
+                // 需要和上一次枚举的数不相同
+                if (start > first + 1 && nums[start] == nums[start - 1]) {
                     continue;
                 }
-                // todo 这里性能有问题，因为每次k循环，都会从最后一位开始判断，效率极低
-                int end = nums.length - 1;
-                while (k < end) {
-                    if (end != nums.length - 1 && nums[end] == nums[end + 1]) {
-                        end--;
-                        continue;
-                    }
-                    if (num + nums[k] + nums[end] == 0) {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(num);
-                        list.add(nums[k]);
-                        list.add(nums[end]);
-                        result.add(list);
-                    }
-                    end--;
+                // 需要保证 b 的指针在 c 的指针的左侧
+                while (start < end && nums[start] + nums[end] > target) {
+                    --end;
+                }
+                // 如果指针重合，随着 b 后续的增加
+                // 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
+                if (start == end) {
+                    break;
+                }
+                if (nums[start] + nums[end] == target) {
+                    List<Integer> list = new ArrayList<Integer>();
+                    list.add(nums[first]);
+                    list.add(nums[start]);
+                    list.add(nums[end]);
+                    ans.add(list);
                 }
             }
         }
-        return result;
+        return ans;
     }
 
 }
