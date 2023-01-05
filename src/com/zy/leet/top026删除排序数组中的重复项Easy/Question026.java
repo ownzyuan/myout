@@ -1,4 +1,9 @@
-package com.zy.leet.top026有序数组去重Easy;
+package com.zy.leet.top026删除排序数组中的重复项Easy;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Question026 {
 
@@ -30,5 +35,31 @@ public class Question026 {
      * 输出：5, nums = [0,1,2,3,4]
      * 解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。
      */
+
+    public static void main(String[] args) {
+//        int[] nums = {1,1,2};
+        int[] nums = {0,0,1,1,1,2,2,3,3,4};
+        int count = removeDuplicates(nums);
+        System.out.println(count);
+    }
+
+    public static int removeDuplicates(int[] nums) {
+        int length = nums.length;
+        int result = 1;
+        if (nums == null || length == 0) {
+            return result;
+        }
+        int left = 0;
+        int right = 1;
+        while (right < length - 1) {
+            if (nums[left] != nums[right]) {
+                left++;
+                nums[left] = nums[right];
+                result++;
+            }
+            right++;
+        }
+        return result;
+    }
 
 }
