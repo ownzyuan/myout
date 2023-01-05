@@ -1,9 +1,5 @@
 package com.zy.leet.top026删除排序数组中的重复项Easy;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class Question026 {
 
