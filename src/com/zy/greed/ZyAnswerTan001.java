@@ -1,4 +1,4 @@
-package com.zy.贪心;
+package com.zy.greed;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.zy.面试.集合不安全问题;
+package com.zy.interview.集合不安全问题;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

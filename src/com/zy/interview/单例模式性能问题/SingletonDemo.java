@@ -1,4 +1,4 @@
-package com.zy.面试.单例模式性能问题;
+package com.zy.interview.单例模式性能问题;
 
 public class SingletonDemo {
 

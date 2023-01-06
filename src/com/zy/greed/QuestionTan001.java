@@ -1,4 +1,4 @@
-package com.zy.贪心;
+package com.zy.greed;
 
 public class QuestionTan001 {
     /**

@@ -1,4 +1,4 @@
-package com.zy.面试.阻塞队列;
+package com.zy.interview.阻塞队列;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
